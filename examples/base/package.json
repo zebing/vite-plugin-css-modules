@@ -1,0 +1,19 @@
+{
+  "name": "vite",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "node server/dev.js",
+    "build": "node server/build.js",
+    "serve": "node server/serve.js"
+  },
+  "dependencies": {
+    "vue": "^3.0.5"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^1.1.2",
+    "@vitejs/plugin-vue-jsx": "^1.0.2",
+    "@vue/compiler-sfc": "^3.0.5",
+    "express": "^4.17.1",
+    "vite": "^2.0.0-beta.50"
+  }
+}
