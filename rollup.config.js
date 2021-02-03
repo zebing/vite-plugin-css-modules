@@ -13,7 +13,8 @@ const plugins = [
   // commonjs({ exclude: 'node_modules' }),
   url(),
   getBabelOutputPlugin({ 
-    presets: ['@babel/preset-env'] 
+    presets: ['@babel/preset-env'],
+    plugins: ['@babel/plugin-transform-runtime']
   })
 ];
 

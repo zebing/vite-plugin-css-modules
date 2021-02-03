@@ -35,11 +35,11 @@
     "url": "https://github.com/zebing/vite-plugin-css-modules/issues"
   },
   "homepage": "https://github.com/zebing/vite-plugin-css-modules#readme",
-  "peerDependencies": {
-    "@babel/core": "^7.12.10"
-  },
+  "peerDependencies": {},
   "devDependencies": {
+    "@babel/core": "^7.12.10",
     "@babel/plugin-syntax-import-meta": "^7.10.4",
+    "@babel/plugin-transform-runtime": "^7.12.10",
     "@babel/preset-env": "^7.12.11",
     "@rollup/plugin-babel": "^5.2.3",
     "@rollup/plugin-commonjs": "^17.1.0",
@@ -49,5 +49,18 @@
     "cross-env": "^7.0.3",
     "del-cli": "^3.0.1",
     "rollup": "^2.38.2"
+  },
+  "dependencies": {
+    "autoprefixer": "^10.2.4",
+    "postcss": "^8.2.4",
+    "postcss-icss": "^2.1.0",
+    "postcss-modules": "^4.0.0",
+    "postcss-modules-extract-imports": "^3.0.0",
+    "postcss-modules-local-by-default": "^4.0.0",
+    "postcss-modules-parser": "^1.1.1",
+    "postcss-modules-scope": "^3.0.0",
+    "postcss-modules-sync": "^1.0.0",
+    "postcss-modules-values": "^4.0.0",
+    "precss": "^4.0.0"
   }
 }

@@ -12,6 +12,7 @@
 <script>
 import { defineProps, reactive } from 'vue'
 import Test from './Test'
+import styles from './style.module.css';
 
 export default {
   components: { Test },
@@ -33,6 +34,9 @@ a {
   color: #42b983;
 }
 .test {
+  color: blue;
+}
+.test1 {
   color: blue;
 }
 </style>

@@ -1,31 +1,45 @@
-import defaultOptions from './defaultOptions';
+import resolveCssModules from './resolveCssModules';
+import { checkId } from './shared';
 const babel = require('@babel/core');
-const fs = require('fs')
 
-export default function (pluginVue) {
+export default function () {
+  let pluginVue;
+  let alias;
 
   return {
     name: 'vite-plugin-css-modules',
+
+    config (config) {
+      if (config.alias instanceof Array) {
+        alias = config.alias;
+      }
+      
+      config.plugins.forEach(plugin => {
+        if (plugin.name === 'vite:vue') {
+          pluginVue = plugin;
+        }
+      });
+    },
     
-    transform (code, id) {
-      if (!/(\.js|\.jsx|\.vue)$/i.test(id)) {
+    async transform (code, id) {
+      if (!checkId(id)) {
         return;
       }
 
-      const ids = id
-      const ast = babel.parse(code)
-      babel.traverse(ast, {
-        Program(path) {
-          var style0 = {}
-          try {
-            console.log(pluginVue().load('G:/project/vite-plugin-css-modules/examples/base/src/components/HelloWorld.vue?vue&type=style&index=0&lang.module.css'))
-          } catch (err) {
-          }
-          
-          console.log(code, style0)
-          console.log(ids)
-        }
-      })
+      const ast = babel.parse(code);
+      const cssTokens = await resolveCssModules({
+        ast, 
+        types: babel.types, 
+        filePath: id,
+        pluginVue,
+        alias
+      });
+      const res = babel.transformFromAst(ast, { code: true, map: true });
+      
+      return {
+        code: res.code, 
+        map: res.map
+      }
     }
   }
 }
