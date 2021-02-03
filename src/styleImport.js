@@ -4,7 +4,7 @@ import { getStyleNameSpace } from './shared';
 export const findStyleImport = (ast, types, fileId) => {
   const cssFile = defaultOptions.cssFile;
 
-  return ast.program.body.filter((node, index ) => {
+  const styleImports = ast.program.body.filter((node, index ) => {
     node.index = index;
     
 
@@ -24,6 +24,12 @@ export const findStyleImport = (ast, types, fileId) => {
 
     return false;
   });
+  styleImports.forEach(node => {
+    ast.program.body.splice(node.index, 1);
+    ast.program.body.unshift(node);
+  });
+
+  return styleImports;
 }
 
 export const resolveStyleImport = ({ styleImports, types }) => {

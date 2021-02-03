@@ -13,7 +13,7 @@ export default {
   plugins: [
     vue(),
     vueJsx(),
-    vitePluginCssModules()
+    vitePluginCssModules({ styleName: 'classname' })
   ],
   build: {
     minify: false,

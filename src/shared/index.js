@@ -1,6 +1,5 @@
 export * from './checkId';
 export * from './resolve';
-export * from './findStyleImport';
 
 let id = 1;
 export function getStyleNameSpace () {

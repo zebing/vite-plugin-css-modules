@@ -1,6 +1,5 @@
 import { dirname, posix, resolve as pathsResolve } from 'path';
 import fs from 'fs';
-import defaultOptions from './defaultOptions';
 import { resolve, getStyleNameSpace } from './shared';
 import { findStyleImport, resolveStyleImport } from './styleImport';
 
@@ -16,7 +15,7 @@ export default async function({ ast, types, filePath, pluginVue, alias }) {
   }
 
   let cssCode = '';
-  let lastImportIndex = styleImports[styleImports.length - 1].index;
+  let lastImportIndex = styleImports.length - 1;
 
   // 检查 module 目录
   const baseUrl = pathsResolve(__dirname, 'module')
@@ -30,13 +29,13 @@ export default async function({ ast, types, filePath, pluginVue, alias }) {
     types
   })
 
-  const stylesName = getStyleNameSpace()
+  const stylesId = types.identifier(getStyleNameSpace())
   // const styles = Object.assign({}, styles1, styles2,...) 节点
   const node = types.variableDeclaration(
     'const', 
     [
       types.variableDeclarator(
-        types.identifier(stylesName),
+        stylesId,
         types.callExpression(
           types.memberExpression(
             types.identifier('Object'),
@@ -83,15 +82,11 @@ export default async function({ ast, types, filePath, pluginVue, alias }) {
       autoprefixer, 
       postcssModules,
     ]
-    // runner = postcss(plugins);
-    // const lazyResult = runner.process(cssCode, { from });
-    // console.log(lazyResult.result.messages)
-    // const result = lazyResult.helpers.root.toResult({ to: 'all.css', map: true })
-    // console.log(lazyResult.helpers.parse(cssCode, { from }).toResult({ to: 'all.css', map: true }))
+
     const result = await postcss(plugins).process(cssCode, { from })
 
     return {
-      styles: stylesName,
+      stylesId,
       tokens: result.messages[0].exportTokens
     }
   }
