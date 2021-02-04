@@ -38,54 +38,6 @@ export const solveObjectAttribute = ({ path, types, stylesId }) => {
   path.remove();
 }
 
-export const solveJSXAttribute = ({ path, types, stylesId, styleName }) => {
-  
-  // 查找class属性
-  const classNode = path.container.find(node => node.name.name === 'class');
-
-  // class 属性不存在
-  if (!classNode) {
-    const attribute = types.jsxAttribute(
-      types.jSXIdentifier('class'),
-      types.jsxExpressionContainer(
-        types.memberExpression(
-          stylesId,
-          types.identifier(path.node.value.value)
-        )
-      )
-    );
-
-    path.container.push(attribute);
-    path.remove();
-    return;
-  }
-
-  // class属性值是字符串
-  if (types.isStringLiteral(classNode.value)) {
-    const value = types.jsxExpressionContainer(
-      resolveStringValue({
-        types, 
-        classAttribute: classNode,
-        classAttributeValue: classNode.value, 
-        styleNamePathValue: path.node.value, 
-        stylesId 
-      })
-    );
-    classNode.value = value;
-
-    // class属性值是jsx表达式
-  } else if (types.isJSXExpressionContainer(classNode.value)) {
-    solveMultipleValue({
-      styleNamePathValue: path.node.value,
-      classAttributeValue: classNode.value.expression,
-      classAttribute: classNode,
-      types,
-      stylesId
-    });
-  }
-  path.remove();
-}
-
 // 处理不同类型表达式的值， 对象， 数组，字符串...
 function solveMultipleValue ({
   styleNamePathValue,

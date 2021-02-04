@@ -7,7 +7,9 @@ const babel = require('@babel/core');
 export default function (config = {}) {
   let pluginVue;
   let alias;
-  const styleName = config.styleName || defaultOptions.styleName;
+  const {
+    styleName = defaultOptions.styleName
+  } = config;
 
   return {
     name: 'vite-plugin-css-modules',
@@ -45,15 +47,17 @@ export default function (config = {}) {
           styleName, 
           stylesId: cssTokens.stylesId 
         }));
+
+        const res = babel.transformFromAst(ast, { code: true, map: true });
+        console.log(res.code)
+      
+        return {
+          code: res.code, 
+          map: res.map
+        }
       }
 
-      const res = babel.transformFromAst(ast, { code: true, map: true });
-      console.log(id)
-      console.log(res.code)
-      return {
-        code: res.code, 
-        map: res.map
-      }
+      return null;
     }
   }
 }

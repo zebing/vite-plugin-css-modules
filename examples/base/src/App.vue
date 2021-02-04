@@ -1,7 +1,7 @@
 <template>
   <div>
     <StyleNameClass />
-    <StyleNameCustom />
+    <StyleNameCustom /> 
     <JSXStyleNameCustom />
   </div>
 </template>
