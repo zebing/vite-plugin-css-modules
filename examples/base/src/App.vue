@@ -3,6 +3,7 @@
     <StyleNameClass />
     <StyleNameCustom /> 
     <JSXStyleNameCustom />
+    <JSXStyleNameCustomCompositionAPI />
   </div>
 </template>
 
@@ -10,12 +11,14 @@
 import StyleNameClass from './components/template/StyleNameClass.vue'
 import StyleNameCustom from './components/template/StyleNameCustom.vue'
 import JSXStyleNameCustom from './components/jsx/JSXStyleNameCustom'
+import JSXStyleNameCustomCompositionAPI from './components/jsx/JSXStyleNameCustomCompositionAPI'
 
 export default {
   components: { 
     StyleNameClass,
     StyleNameCustom,
-    JSXStyleNameCustom
+    JSXStyleNameCustom,
+    JSXStyleNameCustomCompositionAPI
   }
 }
 </script>
