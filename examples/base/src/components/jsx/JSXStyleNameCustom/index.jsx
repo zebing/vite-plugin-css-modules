@@ -1,5 +1,5 @@
-import './styles.module.css'
-import './styles.module.scss'
+import './style.module.css'
+// import './styles.module.scss'
 
 export default {
   render () {

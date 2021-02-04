@@ -8,6 +8,7 @@ export default function (config = {}) {
   let pluginVue;
   let alias;
   const {
+    autoImport = defaultOptions.autoImport,
     cssFile = defaultOptions.cssFile,
     styleName = defaultOptions.styleName
   } = config;
@@ -39,7 +40,8 @@ export default function (config = {}) {
         filePath: id,
         pluginVue,
         alias,
-        cssFile
+        cssFile,
+        autoImport
       });
 
       if (cssTokens) {

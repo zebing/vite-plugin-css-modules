@@ -8,8 +8,8 @@ const postcss = require('postcss');
 const precss = require('precss');
 const postcssModules = require('postcss-modules');
 
-export default async function({ ast, types, filePath, pluginVue, alias, cssFile }) {
-  const styleImports = findStyleImport(ast, types, cssFile);
+export default async function({ ast, types, filePath, pluginVue, alias, cssFile, autoImport }) {
+  const styleImports = findStyleImport({ ast, types, cssFile, autoImport, dirname: dirname(filePath) });
   if (!styleImports.length) {
     return null;
   }
