@@ -3,31 +3,28 @@ import { getStyleNameSpace } from './shared';
 
 export const findStyleImport = (ast, types, fileId) => {
   const cssFile = defaultOptions.cssFile;
+  let length = ast.program.body.length;
+  const styleImports = [];
 
-  const styleImports = ast.program.body.filter((node, index ) => {
-    node.index = index;
-    
+  for (let index = 0; index < length; index++) {
+    const node = ast.program.body[index];
 
     // 非import节点
     if (types.isImportDeclaration(node)) {
+      const fileExp = cssFile.map(value => `\\.${value}`).join('|');
 
       // 缺省文件后缀
-      if (/\.module$/gi.test(node.source.value)) {
-        return true;
-      }
-
-      const fileExp = cssFile.map(value => `\\.${value}`).join('|');
-      if (new RegExp(`.module(${fileExp})$`, 'gi').test(node.source.value)) {
-        return true;
+      if (
+        /\.module$/gi.test(node.source.value) ||
+        new RegExp(`.module(${fileExp})$`, 'gi').test(node.source.value)
+      ) {
+        styleImports.push(node);
+        ast.program.body.splice(index, 1);
+        index--;
+        length--;
       }
     }
-
-    return false;
-  });
-  styleImports.forEach(node => {
-    ast.program.body.splice(node.index, 1);
-    ast.program.body.unshift(node);
-  });
+  }
 
   return styleImports;
 }

@@ -14,9 +14,6 @@ export default async function({ ast, types, filePath, pluginVue, alias }) {
     return null;
   }
 
-  let cssCode = '';
-  let lastImportIndex = styleImports.length - 1;
-
   // 检查 module 目录
   const baseUrl = pathsResolve(__dirname, 'module')
   if (!fs.existsSync(baseUrl)) {
@@ -49,9 +46,11 @@ export default async function({ ast, types, filePath, pluginVue, alias }) {
       )
     ]
   );
-
-  ast.program.body.splice(lastImportIndex, 0, node);
-
+  
+  const styleNodes = [...styleImports, node]
+  ast.program.body.unshift.apply(ast.program.body, styleNodes);
+  let cssCode = '';
+  
   // 获取css Code
   styleImports.forEach(node => {
 
