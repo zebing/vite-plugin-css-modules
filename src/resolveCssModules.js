@@ -7,6 +7,10 @@ const autoprefixer = require('autoprefixer');
 const postcss = require('postcss');
 const precss = require('precss');
 const postcssModules = require('postcss-modules');
+const postcssModulesExtractImports = require('postcss-modules-extract-imports');
+const postcssModulesLocalByDefault = require('postcss-modules-local-by-default');
+const postcssModulesScope = require('postcss-modules-scope');
+const postcssModulesValues = require('postcss-modules-values');
 
 export default async function({ ast, types, filePath, pluginVue, alias, cssFile, autoImport }) {
   const styleImports = findStyleImport({ ast, types, cssFile, autoImport, dirname: dirname(filePath) });
@@ -82,6 +86,10 @@ export default async function({ ast, types, filePath, pluginVue, alias, cssFile,
       precss, 
       autoprefixer, 
       postcssModules,
+      postcssModulesExtractImports,
+      postcssModulesLocalByDefault,
+      postcssModulesScope,
+      postcssModulesValues
     ]
 
     const result = await postcss(plugins).process(cssCode, { from })

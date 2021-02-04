@@ -57,7 +57,6 @@
     "postcss-modules": "^4.0.0",
     "postcss-modules-extract-imports": "^3.0.0",
     "postcss-modules-local-by-default": "^4.0.0",
-    "postcss-modules-parser": "^1.1.1",
     "postcss-modules-scope": "^3.0.0",
     "postcss-modules-values": "^4.0.0",
     "precss": "^4.0.0"
