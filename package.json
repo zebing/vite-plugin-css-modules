@@ -48,6 +48,7 @@
     "@rollup/plugin-url": "^6.0.0",
     "cross-env": "^7.0.3",
     "del-cli": "^3.0.1",
+    "eslint": "^7.19.0",
     "rollup": "^2.38.2"
   },
   "dependencies": {

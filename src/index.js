@@ -49,8 +49,6 @@ export default function (config = {}) {
         }));
 
         const res = babel.transformFromAst(ast, { code: true, map: true });
-        console.log('\n\n\n')
-        console.log(res.code)
       
         return {
           code: res.code, 

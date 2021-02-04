@@ -10,7 +10,7 @@ export function defaultObjectAttribute ({ path, types, stylesId }) {
 
 export const solveObjectAttribute = ({ path, types, stylesId }) => {
   // 查找class属性
-  const classNode = path.container.find(node => node.key.name === 'class');
+  const classNode = path.container.find(node => node.key.name === 'class' || node.key.value === 'class');
 
   // class 属性不存在
   if (!classNode) {
