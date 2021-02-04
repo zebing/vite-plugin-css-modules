@@ -30,6 +30,10 @@ export default ({ types, tokens, styleName, stylesId }) => {
         types, 
         stylesId
       });
+    },
+
+    TemplateElement (path) {
+      console.log(path.node.value)
     }
   }
 }
