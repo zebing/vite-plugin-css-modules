@@ -8,8 +8,8 @@ const postcss = require('postcss');
 const precss = require('precss');
 const postcssModules = require('postcss-modules');
 
-export default async function({ ast, types, filePath, pluginVue, alias }) {
-  const styleImports = findStyleImport(ast, types, filePath);
+export default async function({ ast, types, filePath, pluginVue, alias, cssFile }) {
+  const styleImports = findStyleImport(ast, types, cssFile);
   if (!styleImports.length) {
     return null;
   }
@@ -65,6 +65,7 @@ export default async function({ ast, types, filePath, pluginVue, alias }) {
       // import 引入文件
     } else {
       const url = resolve(node.source.value, {
+        exts: cssFile,
         dirname: dirname(filePath),
         alias
       });

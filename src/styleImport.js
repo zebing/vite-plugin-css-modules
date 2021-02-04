@@ -1,8 +1,6 @@
-import defaultOptions from './defaultOptions';
 import { getStyleNameSpace } from './shared';
 
-export const findStyleImport = (ast, types, fileId) => {
-  const cssFile = defaultOptions.cssFile;
+export const findStyleImport = (ast, types, cssFile) => {
   let length = ast.program.body.length;
   const styleImports = [];
 

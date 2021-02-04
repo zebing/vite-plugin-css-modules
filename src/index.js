@@ -8,6 +8,7 @@ export default function (config = {}) {
   let pluginVue;
   let alias;
   const {
+    cssFile = defaultOptions.cssFile,
     styleName = defaultOptions.styleName
   } = config;
 
@@ -37,7 +38,8 @@ export default function (config = {}) {
         types: babel.types, 
         filePath: id,
         pluginVue,
-        alias
+        alias,
+        cssFile
       });
 
       if (cssTokens) {

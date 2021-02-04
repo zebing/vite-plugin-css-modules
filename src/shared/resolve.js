@@ -1,9 +1,8 @@
 import fs from 'fs';
 import path from 'path';
-import defaultOptions from '../defaultOptions';
 
 export const resolve = (url, options = {}) => {
-  const { dirname,  exts = defaultOptions.cssFile, alias = [] } = options;
+  const { dirname,  exts = [], alias = [] } = options;
   let currentUrl;
 
   // 文件前缀补全
@@ -20,6 +19,6 @@ export const resolve = (url, options = {}) => {
   }
 
   const ext = exts.find((ext) => fs.existsSync(currentUrl + `.${ext}`));
-  
+
   return ext ? currentUrl + `.${ext}` : undefined;
 }
