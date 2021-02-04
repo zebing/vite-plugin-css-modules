@@ -40,19 +40,13 @@ export const resolveStyleImport = ({ styleImports, types }) => {
       return defaultSpecifierNode;
     }
 
-    // import styles from 'source' 节点
-    const styleImportNode = types.importDeclaration(
-      [
-        types.importDefaultSpecifier(
-          types.identifier(getStyleNameSpace())
-        )
-      ],
-      node.source
-    );
-
-    node.specifiers.unshift(styleImportNode);
+    defaultSpecifierNode = types.importDefaultSpecifier(
+      types.identifier(getStyleNameSpace())
+    )
     
-    return styleImportNode;
+    node.specifiers.unshift(defaultSpecifierNode);
+    
+    return defaultSpecifierNode;
   });
   
 }

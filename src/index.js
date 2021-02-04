@@ -30,7 +30,7 @@ export default function (config = {}) {
       if (!checkId(id)) {
         return;
       }
-      
+
       const ast = babel.parse(code);
       const cssTokens = await resolveCssModules({
         ast, 

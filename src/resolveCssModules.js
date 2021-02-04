@@ -27,6 +27,7 @@ export default async function({ ast, types, filePath, pluginVue, alias }) {
   })
 
   const stylesId = types.identifier(getStyleNameSpace())
+
   // const styles = Object.assign({}, styles1, styles2,...) 节点
   const node = types.variableDeclaration(
     'const', 
@@ -69,7 +70,7 @@ export default async function({ ast, types, filePath, pluginVue, alias }) {
       });
 
       if (url) {
-        cssCode += fs.readFileSync(url, 'utf-8');
+        cssCode += '\n\n' + fs.readFileSync(url, 'utf-8');
       }
     }
   });
