@@ -54,13 +54,11 @@
   "dependencies": {
     "autoprefixer": "^10.2.4",
     "postcss": "^8.2.4",
-    "postcss-icss": "^2.1.0",
     "postcss-modules": "^4.0.0",
     "postcss-modules-extract-imports": "^3.0.0",
     "postcss-modules-local-by-default": "^4.0.0",
     "postcss-modules-parser": "^1.1.1",
     "postcss-modules-scope": "^3.0.0",
-    "postcss-modules-sync": "^1.0.0",
     "postcss-modules-values": "^4.0.0",
     "precss": "^4.0.0"
   }
