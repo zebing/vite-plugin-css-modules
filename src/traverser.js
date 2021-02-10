@@ -1,5 +1,7 @@
 import { solveObjectAttribute, defaultObjectAttribute } from './resolveAttribute';
 import { checkStyleName } from './shared';
+import traverseSSR from './traverse-ssr';
+
 
 export default ({ types, tokens, styleName, stylesId }) => {
   
@@ -33,7 +35,16 @@ export default ({ types, tokens, styleName, stylesId }) => {
     },
 
     TemplateElement (path) {
-      console.log(path.node.value)
+      const result = traverseSSR({
+        tokens,
+        html: path.node.value.raw,
+        styleName,
+        stylesId
+      });
+      path.node.value = {
+        raw: result,
+        cooked: result,
+      }
     }
   }
 }
