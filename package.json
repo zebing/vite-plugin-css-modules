@@ -1,5 +1,5 @@
 {
-  "name": "vite-plugin-css-modules",
+  "name": "@zebing/vite-plugin-css-modules",
   "version": "1.0.0",
   "description": "vitejs css modules 名称自动转化插件",
   "main": "dist/index.js",
@@ -29,7 +29,7 @@
     "react",
     "css modules"
   ],
-  "author": "",
+  "author": "zebing",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/zebing/vite-plugin-css-modules/issues"
