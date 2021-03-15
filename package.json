@@ -2,7 +2,7 @@
   "name": "vite-plugin-css-modules",
   "version": "1.0.0",
   "description": "vitejs css modules 名称自动转化插件",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "dev": "cross-env NODE_ENV=development rollup -c -w",
     "build": "del dist && cross-env NODE_ENV=production rollup -c"
