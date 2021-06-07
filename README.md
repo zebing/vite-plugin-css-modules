@@ -1,7 +1,7 @@
 # @zebing/vite-plugin-css-modules
 @zebing/vite-plugin-css-modules 是一个vue css modules智能转化插件。让你在使用vue css modules的同时，无需通过`:class="$style.cssname"`, `class={styles.cssname}`等繁琐的方式调用，而是直接 `class="cssname"`, `class="cssname"`简单调用，极大的减小工作量，增加开发效率。
 
-> 暂不支持 vue2.0。在ssr模式中，仅支持自定义classname方式，自定义classname与class共存可能会出错
+> 本插件仅适用 vue3.0+。
 
 ### 如何使用?
 **安装**
