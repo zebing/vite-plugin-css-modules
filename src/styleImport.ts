@@ -1,9 +1,17 @@
 import { getStyleNameSpace } from './shared';
 import fs from 'fs';
 
-export const findStyleImport = ({ ast, types, cssFile, autoImport, dirname }) => {
+interface Options {
+  ast: any,
+  types: any,
+  cssFile: string[],
+  autoImport: boolean,
+  dirname: string
+}
+
+export const findStyleImport = ({ ast, types, cssFile, autoImport, dirname }: Options) => {
   let length = ast.program.body.length;
-  const styleImports = [];
+  const styleImports: any = [];
 
   // 寻找代码里面的import style 节点
   for (let index = 0; index < length; index++) {
@@ -32,7 +40,7 @@ export const findStyleImport = ({ ast, types, cssFile, autoImport, dirname }) =>
       const url = `${dirname}/style.module.${ext}`;
 
       if (fs.existsSync(url)) {
-        const has = styleImports.find(node => new RegExp(`./style.module.${ext}$`, 'gi').test(node.source.value))
+        const has = styleImports.find((node: any) => new RegExp(`./style.module.${ext}$`, 'gi').test(node.source.value))
         
         if (!has) {
           const importNode = types.importDeclaration(
@@ -52,10 +60,13 @@ export const findStyleImport = ({ ast, types, cssFile, autoImport, dirname }) =>
   return styleImports;
 }
 
-export const resolveStyleImport = ({ styleImports, types }) => {
-  return styleImports.map((node) => {
+export const resolveStyleImport = ({ styleImports, types }: { 
+  styleImports: any, 
+  types: any 
+}) => {
+  return styleImports.map((node: any) => {
     let defaultSpecifierNode = 
-      node.specifiers.find(specifier => 
+      node.specifiers.find((specifier: any) => 
         types.isImportDefaultSpecifier(specifier)
       );
 

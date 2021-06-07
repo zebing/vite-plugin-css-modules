@@ -2,8 +2,9 @@ import { dirname, posix, resolve as pathsResolve } from 'path';
 import fs from 'fs';
 import { resolve, getStyleNameSpace } from './shared';
 import { findStyleImport, resolveStyleImport } from './styleImport';
+import { Plugin, Alias } from 'vite';
 
-const autoprefixer = require('autoprefixer');
+// const autoprefixer = require('autoprefixer');
 const postcss = require('postcss');
 const precss = require('precss');
 const postcssModules = require('postcss-modules');
@@ -12,7 +13,17 @@ const postcssModulesLocalByDefault = require('postcss-modules-local-by-default')
 const postcssModulesScope = require('postcss-modules-scope');
 const postcssModulesValues = require('postcss-modules-values');
 
-export default async function({ ast, types, filePath, pluginVue, alias, cssFile, autoImport }) {
+interface Options {
+  ast: any, 
+  types: any, 
+  filePath: string, 
+  pluginVue: any, 
+  alias: Alias | Alias[], 
+  cssFile: string[], 
+  autoImport: boolean
+}
+
+export default async function({ ast, types, filePath, pluginVue, alias, cssFile, autoImport }: Options) {
   const styleImports = findStyleImport({ ast, types, cssFile, autoImport, dirname: dirname(filePath) });
   if (!styleImports.length) {
     return null;
@@ -45,7 +56,7 @@ export default async function({ ast, types, filePath, pluginVue, alias, cssFile,
           ),
           [
             types.ObjectExpression([]),
-            ...defaultSpecifiers.map(node => node.local)
+            ...defaultSpecifiers.map((node: any) => node.local)
           ]
         )
       )
@@ -57,7 +68,7 @@ export default async function({ ast, types, filePath, pluginVue, alias, cssFile,
   let cssCode = '';
   
   // 获取css Code
-  styleImports.forEach(node => {
+  styleImports.forEach((node: any) => {
 
     // vue <style></style> 路径
     if (node.source.value.startsWith(filePath)) {
@@ -84,7 +95,7 @@ export default async function({ ast, types, filePath, pluginVue, alias, cssFile,
     const from = pathsResolve(baseUrl, posix.basename(filePath));
     const plugins = [
       precss, 
-      autoprefixer, 
+      // autoprefixer, 
       postcssModules,
       postcssModulesExtractImports,
       postcssModulesLocalByDefault,

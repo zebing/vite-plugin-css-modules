@@ -1,5 +1,5 @@
 // 默认styleName
-export function defaultObjectAttribute ({ path, types, stylesId }) {
+export function defaultObjectAttribute ({ path, types, stylesId }: any) {
   path.get('value').replaceWith(
     types.memberExpression(
       stylesId,
@@ -8,9 +8,9 @@ export function defaultObjectAttribute ({ path, types, stylesId }) {
   )
 }
 
-export const solveObjectAttribute = ({ path, types, stylesId }) => {
+export const solveObjectAttribute = ({ path, types, stylesId }: any) => {
   // 查找class属性
-  const classNode = path.container.find(node => node.key.name === 'class' || node.key.value === 'class');
+  const classNode = path.container.find((node: any) => node.key.name === 'class' || node.key.value === 'class');
 
   // class 属性不存在
   if (!classNode) {
@@ -46,7 +46,7 @@ function solveMultipleValue ({
   types,
   stylesId,
   isJSX = true
-}) {
+}: any) {
 
   // 对象表达式
   if (types.isObjectExpression(classAttributeValue)) {
@@ -88,7 +88,7 @@ function solveMultipleValue ({
 }
 
 // 获取字符串拼接表达式
-function resolveStringValue ({ types, classAttributeValue, styleNamePathValue, stylesId }) {
+function resolveStringValue ({ types, classAttributeValue, styleNamePathValue, stylesId }: any) {
   return types.binaryExpression(
     '+', 
     types.binaryExpression(

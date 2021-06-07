@@ -1,4 +1,4 @@
-export const checkId = (id) => {
+export const checkId = (id: string): boolean => {
 
   // 检查文件后缀
   if (!/(\.js|\.jsx|\.vue)$/i.test(id)) {
