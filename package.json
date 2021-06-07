@@ -1,6 +1,6 @@
 {
   "name": "@zebing/vite-plugin-css-modules",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "vitejs css modules 名称自动转化插件",
   "main": "dist/index.js",
   "scripts": {
