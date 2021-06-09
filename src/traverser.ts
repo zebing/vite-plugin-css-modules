@@ -56,10 +56,11 @@ export default ({ pluginVue, ssr, id, ast, types, tokens, styleName, stylesId }:
       styleName,
       stylesId
     });
+
     result.code = 
-      result.code.split('\n\n')[1]
+      result.code.replace(/(.|\n)+?return/, '')
       .replace(
-        /return (function|const) (render|ssrRender)/,
+        /(function|const) (render|ssrRender)/,
         '\n$1 _sfc_$2'
       );
     let funcName: any = '';

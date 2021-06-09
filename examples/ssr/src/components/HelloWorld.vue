@@ -10,7 +10,6 @@
 <script>
 import { defineProps, reactive } from 'vue'
 import Test from './Test'
-import styles from './style.module.css';
 
 export default {
   components: { Test },

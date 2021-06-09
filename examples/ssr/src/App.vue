@@ -1,5 +1,6 @@
 <template>
   <div>
+    <HelloWorld />
     <StyleNameClass />
     <StyleNameCustom /> 
     <JSXStyleNameCustom />
@@ -8,6 +9,7 @@
 </template>
 
 <script>
+import HelloWorld from './components/HelloWorld.vue'
 import StyleNameClass from './components/template/StyleNameClass.vue'
 import StyleNameCustom from './components/template/StyleNameCustom.vue'
 import JSXStyleNameCustom from './components/jsx/JSXStyleNameCustom'
@@ -18,7 +20,8 @@ export default {
     StyleNameClass,
     StyleNameCustom,
     JSXStyleNameCustom,
-    JSXStyleNameCustomCompositionAPI
+    JSXStyleNameCustomCompositionAPI,
+    HelloWorld
   }
 }
 </script>

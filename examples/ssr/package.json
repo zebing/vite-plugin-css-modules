@@ -16,6 +16,7 @@
     "@vitejs/plugin-vue-jsx": "^1.0.2",
     "@vue/compiler-sfc": "^3.0.5",
     "@vue/server-renderer": "^3.0.5",
+    "babel-plugin-syntax-dynamic-import": "^6.18.0",
     "compression": "^1.7.4",
     "cross-env": "^7.0.3",
     "express": "^4.17.1",
@@ -24,6 +25,6 @@
     "npm": "^6.14.11",
     "sass": "^1.32.6",
     "serve-static": "^1.14.1",
-    "vite": "^2.0.0-beta.60"
+    "vite": "^2.3.7"
   }
 }
