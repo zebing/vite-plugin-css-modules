@@ -83,6 +83,23 @@ export default {
 <style>
 ```
 
+**styleName跟class共存**
+
+以template方式为例
+```
+<div class="test" classname="test1"> hello world</div>
+<div :class="['test']" classname="test1"> hello world</div>
+<div :class="{test:true}" classname="test1"> hello world</div>
+<div :class="'test'" classname="test1"> hello world</div>
+```
+将会自动转换成
+```
+<div class="test test1_module"> hello world</div>
+<div :class="['test', test1_module]"> hello world</div>
+<div :class="{test:true, [test1_module]:true}"> hello world</div>
+<div class="test test1_module"> hello world</div>
+```
+
 ### FAQ 
 * templte方式可以通过`import`引入css吗？
 
@@ -92,6 +109,3 @@ export default {
 
   不会。在运行中如果没找到相应的css modules名称，插件将会保留原来的类名`classname`
 
-* `classname`可以和`class`共存吗？
-
-  可以。class支持字符串，数组和对象。`classname`将自动合并到`class`中。
