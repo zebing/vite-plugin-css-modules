@@ -37,7 +37,8 @@ export default function (config: Config = {}) {
       });
     },
 
-    async transform (code: string, id: string, ssr: boolean) {
+    async transform (code: string, id: string, options: { ssr: boolean } | boolean) {
+      const ssr = options?.ssr ?? options;
       if (!checkId(id)) {
         return;
       }

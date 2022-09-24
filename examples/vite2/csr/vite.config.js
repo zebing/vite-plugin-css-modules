@@ -1,7 +1,7 @@
 import vue from '@vitejs/plugin-vue';
 import vueJsx from '@vitejs/plugin-vue-jsx';
-const vitePluginCssModules = require('../../dist/index.js').default
-console.log('vitePluginCssModules', vitePluginCssModules)
+import vitePluginCssModules from '@zebing/vite-plugin-css-modules';
+
 /**
  * https://vitejs.dev/config/
  * @type {import('vite').UserConfig}

@@ -1,6 +1,7 @@
 import vue from '@vitejs/plugin-vue';
 import vueJsx from '@vitejs/plugin-vue-jsx';
-const vitePluginCssModules = require('../../dist/index.js').default
+import vitePluginCssModules from '@zebing/vite-plugin-css-modules';
+
 /**
  * https://vitejs.dev/config/
  * @type {import('vite').UserConfig}
@@ -12,7 +13,7 @@ export default {
   plugins: [
     vue(),
     vueJsx(),
-    vitePluginCssModules({ styleName: 'classname', autoImport: true })
+    vitePluginCssModules.default({ styleName: 'classname', autoImport: true })
   ],
   build: {
     minify: false,
